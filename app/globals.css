@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --green-primary: #3B6D11;
-  --green-light: #EAF3DE;
-  --green-mid: #639922;
-  --green-dark: #27500A;
+  --green-primary: #0B5869;
+  --green-light: #DFF0F4;
+  --green-mid: #1A8099;
+  --green-dark: #073A48;
   --amber-accent: #BA7517;
-  --bg-warm: #F7F5EE;
+  --bg-warm: #F3F7F8;
   --text-dark: #1A1A18;
   --text-muted: #5F5E5A;
   --card-bg: #FFFFFF;
