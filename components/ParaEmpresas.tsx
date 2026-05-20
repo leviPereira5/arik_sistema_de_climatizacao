@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Building2, UtensilsCrossed, Scissors, Users, FileText, Percent, UserCheck } from "lucide-react";
+import { Building2, UtensilsCrossed, Scissors, FileText, Percent, UserCheck } from "lucide-react";
 
 const casos = [
   {
