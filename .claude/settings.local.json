@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(npx create-next-app@14 . --typescript --tailwind --eslint --app --no-src-dir --import-alias=\"@/*\" --no-git)",
+      "Read(//c/Users/kleoc/Documents/**)",
+      "Bash(npx create-next-app@14 _arik_tmp --typescript --tailwind --eslint --app --no-src-dir --import-alias=\"@/*\" --no-git)",
+      "Bash(npx create-next-app@14 arik-tmp --typescript --tailwind --eslint --app --no-src-dir --import-alias=\"@/*\" --no-git)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(Read \"C:\\\\Users\\\\kleoc\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-kleoc-Documents-arik-sistema-de-climatizacao\\\\56217af3-aa8b-42ee-9dc1-bd9e297dcbf1\\\\tasks\\\\bwcs3623s.output\")"
+    ]
+  }
+}
