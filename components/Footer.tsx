@@ -117,7 +117,7 @@ export default function Footer() {
             style={{ color: "rgba(255,255,255,0.35)" }}>
             <p>© 2025 Arik Sistemas de Climatização, Lda. · NIF: 123 456 789 (ilustrativo) · Vila Nova de Famalicão</p>
             <p className="sm:text-right">
-              Site desenvolvido para fins académicos — Projeto Aplicado de Gestão · Universidade Lusófona 2024/2025
+              Site desenvolvido para fins académicos — Projeto Aplicado de Gestão · Universidade Lusófona 2025/2026
             </p>
           </div>
         </div>

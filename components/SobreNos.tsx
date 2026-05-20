@@ -115,7 +115,7 @@ export default function SobreNos() {
           </div>
 
           <p className="text-center text-xs font-sans mt-8" style={{ color: "var(--text-muted)" }}>
-            Projeto desenvolvido no âmbito da Licenciatura de Gestão de Empresas — Universidade Lusófona 2024/2025
+            Projeto desenvolvido no âmbito da Licenciatura de Gestão de Empresas — Universidade Lusófona 2025/2026
           </p>
         </motion.div>
       </div>
