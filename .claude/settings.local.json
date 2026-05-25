@@ -10,7 +10,12 @@
       "Bash(npm install *)",
       "Bash(npx tsc *)",
       "Bash(npm run *)",
-      "Bash(Read \"C:\\\\Users\\\\kleoc\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-kleoc-Documents-arik-sistema-de-climatizacao\\\\56217af3-aa8b-42ee-9dc1-bd9e297dcbf1\\\\tasks\\\\bwcs3623s.output\")"
+      "Bash(Read \"C:\\\\Users\\\\kleoc\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-kleoc-Documents-arik-sistema-de-climatizacao\\\\56217af3-aa8b-42ee-9dc1-bd9e297dcbf1\\\\tasks\\\\bwcs3623s.output\")",
+      "Bash(gh --version)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(git commit -m 'Fix unused import in ParaEmpresas *)",
+      "Bash(git commit -m 'Fix academic year to 2025/2026 *)"
     ]
   }
 }

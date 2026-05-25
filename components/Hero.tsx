@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, Wrench, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 const container = {
   hidden: {},
@@ -38,7 +39,7 @@ export default function Hero() {
             {/* Headline */}
             <motion.h1
               variants={item}
-              className="font-fraunces text-5xl sm:text-6xl lg:text-7xl leading-tight"
+              className="font-fraunces text-4xl sm:text-5xl lg:text-7xl leading-tight"
               style={{ fontWeight: 300, color: "var(--text-dark)" }}
             >
               Conforto térmico sem<br />
@@ -88,14 +89,14 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right — floating card */}
+          {/* Right — logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             className="flex items-center justify-center"
           >
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full max-w-sm flex items-center justify-center min-h-[320px]">
               {/* Organic background shapes */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" aria-hidden="true">
                 <ellipse cx="200" cy="200" rx="190" ry="170" fill="var(--green-light)" opacity="0.7" />
@@ -103,41 +104,21 @@ export default function Hero() {
                 <ellipse cx="100" cy="300" rx="120" ry="90" fill="var(--green-light)" opacity="0.4" />
               </svg>
 
-              {/* Card */}
+              {/* Logo */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="relative z-10 mx-8 my-12 rounded-2xl p-6 shadow-xl"
-                style={{ backgroundColor: "var(--card-bg)" }}
+                className="relative z-10 my-16 rounded-3xl overflow-hidden shadow-2xl"
+                style={{ backgroundColor: "#fff" }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <p className="text-xs font-sans uppercase tracking-widest mb-1" style={{ color: "var(--text-muted)" }}>
-                      Plano Arik
-                    </p>
-                    <h3 className="font-fraunces text-2xl" style={{ fontWeight: 500, color: "var(--text-dark)" }}>
-                      Confort
-                    </h3>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-full text-xs font-medium"
-                    style={{ backgroundColor: "var(--green-light)", color: "var(--green-primary)" }}>
-                    Ativo
-                  </span>
-                </div>
-
-                <div className="mb-4 pb-4" style={{ borderBottom: "1px solid var(--border)" }}>
-                  <span className="font-fraunces text-4xl" style={{ fontWeight: 300, color: "var(--text-dark)" }}>49€</span>
-                  <span className="text-sm font-sans ml-1" style={{ color: "var(--text-muted)" }}>/mês</span>
-                </div>
-
-                <ul className="space-y-2">
-                  {["Instalação incluída", "Manutenção semestral", "Reparações cobertas"].map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm font-sans" style={{ color: "var(--text-dark)" }}>
-                      <Check size={14} style={{ color: "var(--green-primary)" }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+                <Image
+                  src="/logo-arik.png"
+                  alt="Arik Sistemas de Climatização"
+                  width={320}
+                  height={320}
+                  className="w-64 h-64 object-contain p-6"
+                  priority
+                />
               </motion.div>
             </div>
           </motion.div>

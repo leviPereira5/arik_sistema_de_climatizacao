@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-20  
 **Type:** Demonstrative academic website  
-**Context:** Licenciatura de Gestão de Empresas — Universidade Lusófona 2024/2025
+**Context:** Licenciatura de Gestão de Empresas — Universidade Lusófona 2025/2026
 
 ---
 

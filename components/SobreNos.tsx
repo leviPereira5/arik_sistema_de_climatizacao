@@ -29,13 +29,13 @@ const equipa = [
   { initials: "TG", name: "Tomás Gonçalves" },
 ];
 
-const avatarColors = ["#3B6D11", "#639922", "#BA7517", "#3B6D11", "#639922"];
+const avatarColors = ["#3B6D11", "#639922", "#3B6D11", "#639922", "#3B6D11"];
 
 export default function SobreNos() {
   return (
     <section className="py-24" style={{ backgroundColor: "var(--bg-warm)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start mb-8 lg:mb-16">
           {/* Left — story */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -43,7 +43,7 @@ export default function SobreNos() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-fraunces text-4xl lg:text-5xl mb-6" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
+            <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl mb-6" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
               Sobre a Arik
             </h2>
             <p className="font-sans text-base leading-relaxed mb-4" style={{ color: "var(--text-muted)" }}>

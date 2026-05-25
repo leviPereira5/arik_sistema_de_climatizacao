@@ -2,29 +2,28 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Building2, UtensilsCrossed, Scissors, FileText, Percent, UserCheck } from "lucide-react";
+import { Hotel, ChefHat, Store, FileText, UserCheck, Layers } from "lucide-react";
 
 const casos = [
   {
-    icon: Building2,
+    icon: Hotel,
     title: "Alojamento Local",
     desc: "Melhore as avaliações online e atraia mais hóspedes com climatização de qualidade — sem capital inicial.",
   },
   {
-    icon: UtensilsCrossed,
+    icon: ChefHat,
     title: "Restauração & Cafés",
     desc: "Os seus clientes ficam mais tempo quando se sentem confortáveis. Climatize sem grandes investimentos.",
   },
   {
-    icon: Scissors,
+    icon: Store,
     title: "Pequenos Negócios",
     desc: "Barbeiros, estéticas, clínicas — ambientes agradáveis fidelizam clientes. A Arik cuida disso.",
   },
 ];
 
 const vantagens = [
-  { icon: Percent, label: "Desconto de 5% na mensalidade" },
-  { icon: Building2, label: "Gestão de múltiplos espaços numa só conta" },
+  { icon: Layers, label: "Gestão de múltiplos espaços numa só conta" },
   { icon: FileText, label: "Faturação centralizada" },
   { icon: UserCheck, label: "Técnico dedicado para a sua conta" },
 ];
@@ -85,7 +84,7 @@ export default function ParaEmpresas() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -93,7 +92,7 @@ export default function ParaEmpresas() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-fraunces text-4xl lg:text-5xl mb-4" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
+            <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
               A Arik é parceira do seu negócio
             </h2>
             <p className="font-sans text-lg mb-8" style={{ color: "var(--text-muted)" }}>

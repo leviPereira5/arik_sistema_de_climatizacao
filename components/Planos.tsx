@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, X, Star } from "lucide-react";
+import { Check, X, Star, Sofa, Briefcase } from "lucide-react";
 import PlanosModal from "./PlanosModal";
-
-type Tab = "particulares" | "empresas";
 
 interface Plano {
   id: string;
@@ -13,21 +11,22 @@ interface Plano {
   price: string;
   equipment?: string;
   idealFor: string;
+  idealForEmpresas: string;
   features: { label: string; included: boolean }[];
   popular?: boolean;
   cta?: string;
 }
 
-const particulares: Plano[] = [
+const planos: Plano[] = [
   {
     id: "essential",
     name: "Arik Essential",
-    price: "29€",
+    price: "64,57€",
     equipment: "Mono-split 12.000 BTU (GREE Clivia+)",
     idealFor: "T0, T1, quartos individuais",
+    idealForEmpresas: "Barbeiros, salões, pequenos escritórios, alojamento local pequeno",
     features: [
       { label: "Instalação incluída", included: true },
-      { label: "Manutenção anual", included: true },
       { label: "Reparações cobertas", included: true },
       { label: "Garantia de funcionamento", included: true },
       { label: "Múltiplas divisões", included: false },
@@ -37,9 +36,10 @@ const particulares: Plano[] = [
   {
     id: "confort",
     name: "Arik Confort",
-    price: "49€",
+    price: "124,17€",
     equipment: "Multi-split 21.000 BTU (GREE FM21)",
     idealFor: "T2, T3, habitações médias",
+    idealForEmpresas: "Restaurantes, pastelarias, lojas, alojamento local médio",
     popular: true,
     features: [
       { label: "Instalação incluída", included: true },
@@ -53,9 +53,10 @@ const particulares: Plano[] = [
   {
     id: "premium",
     name: "Arik Premium",
-    price: "79€",
+    price: "194,37€",
     equipment: "Multi-split 28.000 BTU (GREE FM28)",
     idealFor: "T4+, moradias, grandes espaços",
+    idealForEmpresas: "Hotéis, ginásios, escritórios grandes, alojamento local espaçoso",
     features: [
       { label: "Instalação incluída", included: true },
       { label: "Manutenção trimestral", included: true },
@@ -67,65 +68,11 @@ const particulares: Plano[] = [
   },
 ];
 
-const empresas: Plano[] = [
-  {
-    id: "essential-business",
-    name: "Arik Essential Business",
-    price: "39€",
-    idealFor: "Barbeiros, salões, pequenos negócios",
-    features: [
-      { label: "Instalação incluída", included: true },
-      { label: "Manutenção incluída", included: true },
-      { label: "Reparações cobertas", included: true },
-      { label: "Desconto 5% contrato anual", included: true },
-      { label: "Gestor de conta dedicado", included: false },
-      { label: "Faturação centralizada", included: false },
-    ],
-  },
-  {
-    id: "business",
-    name: "Arik Business",
-    price: "69€",
-    idealFor: "Restaurantes, pastelarias, alojamento local",
-    popular: true,
-    features: [
-      { label: "Instalação incluída", included: true },
-      { label: "Manutenção incluída", included: true },
-      { label: "Reparações cobertas", included: true },
-      { label: "Desconto 5% contrato anual", included: true },
-      { label: "Gestor de conta dedicado", included: true },
-      { label: "Faturação centralizada", included: true },
-    ],
-  },
-  {
-    id: "enterprise",
-    name: "Arik Enterprise",
-    price: "Contacto",
-    idealFor: "Múltiplas unidades, grandes operadores",
-    cta: "Falar com a equipa",
-    features: [
-      { label: "Solução personalizada", included: true },
-      { label: "Manutenção dedicada", included: true },
-      { label: "Reparações cobertas", included: true },
-      { label: "Desconto volume", included: true },
-      { label: "Gestor de conta dedicado", included: true },
-      { label: "Faturação centralizada", included: true },
-    ],
-  },
-];
-
 export default function Planos() {
-  const [activeTab, setActiveTab] = useState<Tab>("particulares");
   const [selectedPlano, setSelectedPlano] = useState<Plano | null>(null);
 
-  const plans = activeTab === "particulares" ? particulares : empresas;
-
   const handleCta = (plano: Plano) => {
-    if (plano.id === "enterprise") {
-      document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      setSelectedPlano(plano);
-    }
+    setSelectedPlano(plano);
   };
 
   return (
@@ -139,34 +86,17 @@ export default function Planos() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h2 className="font-fraunces text-4xl lg:text-5xl mb-4" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
+          <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
             Escolhe o teu plano
           </h2>
           <p className="text-lg font-sans max-w-xl mx-auto mb-8" style={{ color: "var(--text-muted)" }}>
             Todos os planos incluem instalação, manutenção e reparação. Sem letras pequenas.
           </p>
-
-          {/* Toggle */}
-          <div className="inline-flex rounded-full p-1" style={{ backgroundColor: "var(--green-light)" }}>
-            {(["particulares", "empresas"] as Tab[]).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className="px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 capitalize"
-                style={{
-                  backgroundColor: activeTab === tab ? "var(--green-primary)" : "transparent",
-                  color: activeTab === tab ? "#fff" : "var(--text-muted)",
-                }}
-              >
-                {tab === "particulares" ? "Particulares" : "Empresas"}
-              </button>
-            ))}
-          </div>
         </motion.div>
 
         {/* Cards — desktop grid, mobile scroll */}
         <div className="flex lg:grid lg:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 lg:overflow-visible">
-          {plans.map((plano, i) => (
+          {planos.map((plano, i) => (
             <motion.div
               key={plano.id}
               initial={{ opacity: 0, y: 24 }}
@@ -193,9 +123,16 @@ export default function Planos() {
                 <h3 className="font-fraunces text-xl mb-1" style={{ fontWeight: 500, color: plano.popular ? "#fff" : "var(--text-dark)" }}>
                   {plano.name}
                 </h3>
-                <p className="text-xs font-sans mb-4" style={{ color: plano.popular ? "rgba(255,255,255,0.7)" : "var(--text-muted)" }}>
-                  {plano.idealFor}
-                </p>
+                <div className="flex flex-col gap-1 mb-4">
+                  <span className="flex items-center gap-1.5 text-xs font-sans" style={{ color: plano.popular ? "rgba(255,255,255,0.75)" : "var(--text-muted)" }}>
+                    <Sofa size={11} style={{ flexShrink: 0 }} />
+                    {plano.idealFor}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-xs font-sans" style={{ color: plano.popular ? "rgba(255,255,255,0.75)" : "var(--text-muted)" }}>
+                    <Briefcase size={11} style={{ flexShrink: 0 }} />
+                    {plano.idealForEmpresas}
+                  </span>
+                </div>
                 <div className="flex items-baseline gap-1">
                   <span className="font-fraunces text-4xl" style={{ fontWeight: 300, color: plano.popular ? "#fff" : "var(--text-dark)" }}>
                     {plano.price}

@@ -46,7 +46,7 @@ export default function Contacto() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="font-fraunces text-4xl lg:text-5xl mb-3 text-white" style={{ fontWeight: 300 }}>
+          <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl mb-3 text-white" style={{ fontWeight: 300 }}>
             Pronto para começar?
           </h2>
           <p className="font-sans text-lg" style={{ color: "rgba(255,255,255,0.7)" }}>

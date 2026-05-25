@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ArrowLeft, RotateCcw } from "lucide-react";
+import {
+  Check, ArrowLeft, RotateCcw,
+  Home, Hotel, Store,
+  Minimize2, Square, Maximize2,
+  DoorOpen, LayoutDashboard, LayoutGrid,
+  Leaf, Wallet, CreditCard,
+  type LucideIcon,
+} from "lucide-react";
 import {
   calcularPlano,
   type TipoEspaco,
@@ -12,37 +19,37 @@ import {
   type PlanoRecomendado,
 } from "@/lib/simulador";
 
-const steps = [
+const steps: { question: string; options: { value: string; icon: LucideIcon; desc: string }[] }[] = [
   {
     question: "Qual é o tipo de espaço?",
     options: [
-      { value: "habitacao", label: "🏠", desc: "Habitação particular" },
-      { value: "alojamento", label: "🏨", desc: "Alojamento local" },
-      { value: "comercio", label: "🍽️", desc: "Restauração / Comércio" },
+      { value: "habitacao", icon: Home, desc: "Habitação particular" },
+      { value: "alojamento", icon: Hotel, desc: "Alojamento local" },
+      { value: "comercio", icon: Store, desc: "Restauração / Comércio" },
     ],
   },
   {
     question: "Qual é o tamanho do espaço?",
     options: [
-      { value: "pequeno", label: "◻️", desc: "Menos de 60 m²" },
-      { value: "medio", label: "🔲", desc: "Entre 60 m² e 100 m²" },
-      { value: "grande", label: "⬛", desc: "Mais de 100 m²" },
+      { value: "pequeno", icon: Minimize2, desc: "Menos de 60 m²" },
+      { value: "medio", icon: Square, desc: "Entre 60 m² e 100 m²" },
+      { value: "grande", icon: Maximize2, desc: "Mais de 100 m²" },
     ],
   },
   {
     question: "Quantas divisões a climatizar?",
     options: [
-      { value: "uma", label: "1️⃣", desc: "1 divisão" },
-      { value: "algumas", label: "2️⃣", desc: "2 a 3 divisões" },
-      { value: "muitas", label: "🔢", desc: "4 ou mais divisões" },
+      { value: "uma", icon: DoorOpen, desc: "1 divisão" },
+      { value: "algumas", icon: LayoutDashboard, desc: "2 a 3 divisões" },
+      { value: "muitas", icon: LayoutGrid, desc: "4 ou mais divisões" },
     ],
   },
   {
     question: "Qual é o seu orçamento mensal?",
     options: [
-      { value: "baixo", label: "💚", desc: "Até 35€/mês" },
-      { value: "medio", label: "💛", desc: "Entre 35€ e 60€/mês" },
-      { value: "alto", label: "🧡", desc: "Mais de 60€/mês" },
+      { value: "baixo", icon: Leaf, desc: "Até 65€/mês" },
+      { value: "medio", icon: Wallet, desc: "Entre 65€ e 125€/mês" },
+      { value: "alto", icon: CreditCard, desc: "Mais de 125€/mês" },
     ],
   },
 ];
@@ -130,7 +137,7 @@ export default function Simulador() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h2 className="font-fraunces text-4xl lg:text-5xl mb-3" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
+          <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl mb-3" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
             Qual é o plano certo para si?
           </h2>
           <p className="font-sans text-base" style={{ color: "var(--text-muted)" }}>
@@ -170,27 +177,33 @@ export default function Simulador() {
                   {steps[step].question}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {steps[step].options.map((opt) => (
-                    <button
-                      key={opt.value}
-                      onClick={() => handleOption(opt.value)}
-                      className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all"
-                      style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-warm)" }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = "var(--green-primary)";
-                        e.currentTarget.style.backgroundColor = "var(--green-light)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = "var(--border)";
-                        e.currentTarget.style.backgroundColor = "var(--bg-warm)";
-                      }}
-                    >
-                      <span className="text-3xl">{opt.label}</span>
-                      <span className="text-sm font-sans text-center" style={{ color: "var(--text-dark)" }}>
-                        {opt.desc}
-                      </span>
-                    </button>
-                  ))}
+                  {steps[step].options.map((opt) => {
+                    const Icon = opt.icon;
+                    return (
+                      <button
+                        key={opt.value}
+                        onClick={() => handleOption(opt.value)}
+                        className="flex flex-col items-center gap-3 p-4 rounded-xl border-2 transition-all"
+                        style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-warm)" }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = "var(--green-primary)";
+                          e.currentTarget.style.backgroundColor = "var(--green-light)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = "var(--border)";
+                          e.currentTarget.style.backgroundColor = "var(--bg-warm)";
+                        }}
+                      >
+                        <span className="w-10 h-10 rounded-full flex items-center justify-center"
+                          style={{ backgroundColor: "var(--green-light)" }}>
+                          <Icon size={20} style={{ color: "var(--green-primary)" }} />
+                        </span>
+                        <span className="text-sm font-sans text-center" style={{ color: "var(--text-dark)" }}>
+                          {opt.desc}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {step > 0 && (

@@ -42,7 +42,7 @@ export default function ComoFunciona() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-fraunces text-4xl lg:text-5xl mb-4" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
+          <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
             Como funciona a Arik?
           </h2>
           <p className="text-lg font-sans max-w-xl mx-auto" style={{ color: "var(--text-muted)" }}>
