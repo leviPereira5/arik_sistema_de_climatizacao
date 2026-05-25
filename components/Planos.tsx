@@ -21,7 +21,7 @@ const planos: Plano[] = [
   {
     id: "essential",
     name: "Arik Essential",
-    price: "64,57€",
+    price: "81,23€",
     equipment: "Mono-split 12.000 BTU (GREE Clivia+)",
     idealFor: "T0, T1, quartos individuais",
     idealForEmpresas: "Barbeiros, salões, pequenos escritórios, alojamento local pequeno",
@@ -30,40 +30,35 @@ const planos: Plano[] = [
       { label: "Reparações cobertas", included: true },
       { label: "Garantia de funcionamento", included: true },
       { label: "Múltiplas divisões", included: false },
-      { label: "Controlo remoto inteligente", included: false },
     ],
   },
   {
     id: "confort",
     name: "Arik Confort",
-    price: "124,17€",
+    price: "151,95€",
     equipment: "Multi-split 21.000 BTU (GREE FM21)",
     idealFor: "T2, T3, habitações médias",
     idealForEmpresas: "Restaurantes, pastelarias, lojas, alojamento local médio",
     popular: true,
     features: [
       { label: "Instalação incluída", included: true },
-      { label: "Manutenção semestral", included: true },
       { label: "Reparações cobertas", included: true },
       { label: "Garantia de funcionamento", included: true },
       { label: "Múltiplas divisões", included: true },
-      { label: "Controlo remoto inteligente", included: false },
     ],
   },
   {
     id: "premium",
     name: "Arik Premium",
-    price: "194,37€",
+    price: "233,26€",
     equipment: "Multi-split 28.000 BTU (GREE FM28)",
     idealFor: "T4+, moradias, grandes espaços",
     idealForEmpresas: "Hotéis, ginásios, escritórios grandes, alojamento local espaçoso",
     features: [
       { label: "Instalação incluída", included: true },
-      { label: "Manutenção trimestral", included: true },
       { label: "Reparações cobertas", included: true },
       { label: "Garantia de funcionamento", included: true },
       { label: "Múltiplas divisões", included: true },
-      { label: "Controlo remoto inteligente", included: true },
     ],
   },
 ];
@@ -139,7 +134,7 @@ export default function Planos() {
                   </span>
                   {plano.price !== "Contacto" && (
                     <span className="text-sm font-sans" style={{ color: plano.popular ? "rgba(255,255,255,0.7)" : "var(--text-muted)" }}>
-                      /mês <span className="text-xs">(ilustrativo)</span>
+                      /mês
                     </span>
                   )}
                 </div>

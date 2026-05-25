@@ -29,7 +29,7 @@ const equipa = [
   { initials: "TG", name: "Tomás Gonçalves" },
 ];
 
-const avatarColors = ["#3B6D11", "#639922", "#3B6D11", "#639922", "#3B6D11"];
+const avatarColors = ["#0B5869", "#1A8099", "#0B5869", "#1A8099", "#0B5869"];
 
 export default function SobreNos() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Wrench, ShieldCheck } from "lucide-react";
+import { Check } from "lucide-react";
 import Image from "next/image";
 
 const container = {
@@ -42,14 +42,13 @@ export default function Hero() {
               className="font-fraunces text-4xl sm:text-5xl lg:text-7xl leading-tight"
               style={{ fontWeight: 300, color: "var(--text-dark)" }}
             >
-              Conforto térmico sem<br />
-              <span style={{ color: "var(--green-primary)" }}>investimento inicial.</span>
+              Climatização completa.{" "}
+              <span style={{ color: "var(--green-primary)" }}>Mensalidade simples.</span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p variants={item} className="text-lg font-sans max-w-md" style={{ color: "var(--text-muted)" }}>
-              A Arik instala, mantém e repara o seu sistema de climatização por uma mensalidade fixa.
-              Sem surpresas, sem capital avançado.
+              A Arik cuida de tudo — da instalação à reparação.
             </motion.p>
 
             {/* CTAs */}
@@ -78,8 +77,6 @@ export default function Hero() {
             <motion.div variants={item} className="flex flex-wrap gap-4 pt-2">
               {[
                 { icon: Check, label: "Instalação incluída" },
-                { icon: Wrench, label: "Manutenção incluída" },
-                { icon: ShieldCheck, label: "Sem investimento inicial" },
               ].map(({ icon: Icon, label }) => (
                 <span key={label} className="flex items-center gap-1.5 text-sm font-sans" style={{ color: "var(--text-muted)" }}>
                   <Icon size={16} style={{ color: "var(--green-primary)" }} />
