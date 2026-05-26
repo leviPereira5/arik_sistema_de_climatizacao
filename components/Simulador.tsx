@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Check, ArrowLeft, RotateCcw,
+  Check, X, ArrowLeft, RotateCcw,
   Home, Hotel, Store,
   Minimize2, Square, Maximize2,
   DoorOpen, LayoutDashboard, LayoutGrid,
-  Leaf, Wallet, CreditCard,
+  Sofa, Briefcase,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -15,7 +15,6 @@ import {
   type TipoEspaco,
   type Tamanho,
   type Divisoes,
-  type Orcamento,
   type PlanoRecomendado,
 } from "@/lib/simulador";
 
@@ -44,36 +43,50 @@ const steps: { question: string; options: { value: string; icon: LucideIcon; des
       { value: "muitas", icon: LayoutGrid, desc: "4 ou mais divisões" },
     ],
   },
-  {
-    question: "Qual é o seu orçamento mensal?",
-    options: [
-      { value: "baixo", icon: Leaf, desc: "Até 65€/mês" },
-      { value: "medio", icon: Wallet, desc: "Entre 65€ e 125€/mês" },
-      { value: "alto", icon: CreditCard, desc: "Mais de 125€/mês" },
-    ],
-  },
 ];
 
-const planoInfo: Record<PlanoRecomendado, { price: string; features: string[] }> = {
+const planoInfo: Record<PlanoRecomendado, {
+  price: string;
+  equipment: string;
+  idealFor: string;
+  idealForEmpresas: string;
+  features: { label: string; included: boolean }[];
+}> = {
   Essential: {
-    price: "29€/mês",
-    features: ["Instalação incluída", "Manutenção anual", "Reparações cobertas"],
+    price: "81,23€",
+    equipment: "Mono-split 12.000 BTU (GREE Clivia+)",
+    idealFor: "T0, T1, quartos individuais",
+    idealForEmpresas: "Barbeiros, salões, pequenos escritórios, alojamento local pequeno",
+    features: [
+      { label: "Instalação incluída", included: true },
+      { label: "Reparações cobertas", included: true },
+      { label: "Garantia de funcionamento", included: true },
+      { label: "Múltiplas divisões", included: false },
+    ],
   },
   Confort: {
-    price: "49€/mês",
-    features: ["Instalação incluída", "Manutenção semestral", "Reparações cobertas", "Múltiplas divisões"],
+    price: "151,95€",
+    equipment: "Multi-split 21.000 BTU (GREE FM21)",
+    idealFor: "T2, T3, habitações médias",
+    idealForEmpresas: "Restaurantes, pastelarias, lojas, alojamento local médio",
+    features: [
+      { label: "Instalação incluída", included: true },
+      { label: "Reparações cobertas", included: true },
+      { label: "Garantia de funcionamento", included: true },
+      { label: "Múltiplas divisões", included: true },
+    ],
   },
   Premium: {
-    price: "79€/mês",
-    features: ["Instalação incluída", "Manutenção trimestral", "Reparações cobertas", "Controlo inteligente"],
-  },
-  "Essential Business": {
-    price: "39€/mês",
-    features: ["Instalação incluída", "Manutenção incluída", "Desconto 5% contrato anual"],
-  },
-  Business: {
-    price: "69€/mês",
-    features: ["Instalação incluída", "Manutenção incluída", "Gestor dedicado", "Faturação centralizada"],
+    price: "233,26€",
+    equipment: "Multi-split 28.000 BTU (GREE FM28)",
+    idealFor: "T4+, moradias, grandes espaços",
+    idealForEmpresas: "Hotéis, ginásios, escritórios grandes, alojamento local espaçoso",
+    features: [
+      { label: "Instalação incluída", included: true },
+      { label: "Reparações cobertas", included: true },
+      { label: "Garantia de funcionamento", included: true },
+      { label: "Múltiplas divisões", included: true },
+    ],
   },
 };
 
@@ -98,13 +111,12 @@ export default function Simulador() {
       setAnswers(next);
       setStep((s) => s + 1);
     } else {
-      const [tipo, tamanho, divisoes, orcamento] = next;
+      const [tipo, tamanho, divisoes] = next;
       setResultado(
         calcularPlano(
           tipo as TipoEspaco,
           tamanho as Tamanho,
-          divisoes as Divisoes,
-          orcamento as Orcamento
+          divisoes as Divisoes
         )
       );
     }
@@ -141,7 +153,7 @@ export default function Simulador() {
             Qual é o plano certo para si?
           </h2>
           <p className="font-sans text-base" style={{ color: "var(--text-muted)" }}>
-            Responda a 4 perguntas e receba a recomendação personalizada.
+            Responda a 3 perguntas e receba a recomendação personalizada.
           </p>
         </motion.div>
 
@@ -149,7 +161,7 @@ export default function Simulador() {
           {/* Progress bar */}
           <div className="mb-8">
             <div className="flex justify-between text-xs font-sans mb-2" style={{ color: "var(--text-muted)" }}>
-              <span>{resultado ? "Recomendação" : `Passo ${step + 1} de ${steps.length}`}</span>
+              <span>{resultado ? "Recomendação" : `Passo ${step + 1} de 3`}</span>
               <span>{progress}%</span>
             </div>
             <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "var(--green-light)" }}>
@@ -229,39 +241,61 @@ export default function Simulador() {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="text-center"
               >
-                <p className="text-sm font-sans mb-2" style={{ color: "var(--text-muted)" }}>
+                <p className="text-sm font-sans mb-4" style={{ color: "var(--text-muted)" }}>
                   Recomendamos
                 </p>
-                <h3 className="font-fraunces text-3xl mb-1" style={{ fontWeight: 400, color: "var(--green-primary)" }}>
-                  Arik {resultado}
-                </h3>
-                <p className="font-fraunces text-2xl mb-6" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
-                  {planoInfo[resultado].price}{" "}
-                  <span className="text-sm font-sans" style={{ color: "var(--text-muted)" }}>(ilustrativo)</span>
-                </p>
 
-                <ul className="inline-flex flex-col items-start gap-2 mb-8">
+                <div className="mb-4">
+                  <h3 className="font-fraunces text-2xl mb-2" style={{ fontWeight: 500, color: "var(--text-dark)" }}>
+                    Arik {resultado}
+                  </h3>
+                  <div className="flex flex-col gap-1 mb-3 items-center">
+                    <span className="flex items-center gap-1.5 text-xs font-sans" style={{ color: "var(--text-muted)" }}>
+                      <Sofa size={11} style={{ flexShrink: 0 }} />
+                      {planoInfo[resultado].idealFor}
+                    </span>
+                    <span className="flex items-center gap-1.5 text-xs font-sans" style={{ color: "var(--text-muted)" }}>
+                      <Briefcase size={11} style={{ flexShrink: 0 }} />
+                      {planoInfo[resultado].idealForEmpresas}
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-1 justify-center">
+                    <span className="font-fraunces text-4xl" style={{ fontWeight: 300, color: "var(--text-dark)" }}>
+                      {planoInfo[resultado].price}
+                    </span>
+                    <span className="text-sm font-sans" style={{ color: "var(--text-muted)" }}>/mês</span>
+                  </div>
+                  <p className="text-xs mt-1 font-sans" style={{ color: "var(--text-muted)" }}>
+                    {planoInfo[resultado].equipment}
+                  </p>
+                </div>
+
+                <ul className="space-y-2.5 mb-8 inline-flex flex-col items-start">
                   {planoInfo[resultado].features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm font-sans" style={{ color: "var(--text-dark)" }}>
-                      <Check size={14} style={{ color: "var(--green-primary)" }} />
-                      {f}
+                    <li key={f.label} className="flex items-center gap-2 text-sm font-sans"
+                      style={{ color: f.included ? "var(--text-dark)" : "var(--text-muted)" }}>
+                      {f.included
+                        ? <Check size={14} style={{ color: "var(--green-primary)", flexShrink: 0 }} />
+                        : <X size={14} style={{ flexShrink: 0, opacity: 0.4 }} />
+                      }
+                      {f.label}
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handleContratar}
-                    className="px-6 py-3 rounded-full text-white text-sm font-medium transition-colors"
+                    className="flex-1 py-3 rounded-full text-white text-sm font-medium transition-colors"
                     style={{ backgroundColor: "var(--green-primary)" }}
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--green-mid)")}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--green-primary)")}
                   >
-                    Contratar agora →
+                    Contratar este plano →
                   </button>
                   <button
                     onClick={handleReset}
-                    className="px-6 py-3 rounded-full text-sm font-medium border transition-colors flex items-center justify-center gap-1.5"
+                    className="flex-1 py-3 rounded-full text-sm font-medium border transition-colors flex items-center justify-center gap-1.5"
                     style={{ borderColor: "var(--border)", color: "var(--text-muted)", backgroundColor: "transparent" }}
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--green-light)")}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
